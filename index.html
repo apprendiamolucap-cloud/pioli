@@ -3,20 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Mio Sito Web</title>
+    <title>Santos_Lukas | Programmatore & Developer</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #1e1e2e;
-            color: #ffffff;
-            padding: 50px;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
         }
-        h1 { color: #89b4fa; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .bio {
+            margin-top: 20px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .links {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
-    <h1>Benvenuto sul mio sito web!</h1>
-    <p>Questo sito è ospitato gratuitamente su GitHub Pages.</p>
+
+    <div class="container">
+        <header>
+            <div class="avatar">SL</div>
+            <h1>Santos_Lukas</h1>
+            <p class="subtitle">Programmatore & Developer</p>
+        </header>
+
+        <section class="bio">
+            <p>Ciao! Sono <strong>Santos_Lukas</strong>. Appassionato di programmazione, sviluppo software e nuove tecnologie. Mi piace trasformare idee in codice pulito e funzionale, creando progetti web e applicazioni interattive.</p>
+        </section>
+
+        <div style="text-align: center;">
+            <h2 class="section-title">Linguaggi & Competenze</h2>
+            <div class="skills">
+                <span class="tag">HTML & CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Git & GitHub</span>
+                <span class="tag">Python</span>
+                <span class="tag">Sviluppo Web</span>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/Santos_Lukas" target="_blank" class="btn">Profilo GitHub</a>
+        </div>
+
+        <footer>
+            <p>© Santos_Lukas — Ospitato gratuitamente su GitHub Pages</p>
+        </footer>
+    </div>
+
 </body>
 </html>
+```eof
+
+### Come inserirlo su GitHub:
+1. Vai nel tuo repository su **GitHub**.
+2. Clicca sul file `index.html` se lo hai già creato (oppure clicca su **Add file > Create new file** e chiamalo `index.html`).
+3. Clicca sull'icona della matita (**Edit this file**) in alto a destra.
+4. Sostituisci tutto il codice esistente incollando il codice qui sopra.
+5. In basso fai clic su **Commit changes...** per salvare.
+
+Nel giro di 1-2 minuti la tua pagina online verrà aggiornata automaticamente con la tua nuova presentazione personale!
