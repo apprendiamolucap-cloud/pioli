@@ -15,6 +15,7 @@
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --discord-color: #5865F2;
+            --input-bg: #0d131f;
         }
 
         body.halloween-theme {
@@ -26,6 +27,7 @@
             --accent-gold: #eab308;
             --text-main: #fef08a;
             --text-sub: #cbd5e1;
+            --input-bg: #120924;
         }
 
         * {
@@ -92,6 +94,97 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
+        /* Sezione Login */
+        .login-card h2 {
+            text-align: center;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 1.8rem;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            background-color: var(--input-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .login-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-sub);
+            border: 1px solid var(--card-border);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-main);
+        }
+
+        /* Profile & Team Styles */
         .header-profile {
             text-align: center;
         }
@@ -318,9 +411,30 @@
 
     <div class="main-wrapper">
         
+        <!-- CARD LOGIN -->
+        <div class="card login-card">
+            <h2 id="login-title">Accedi al Portale</h2>
+            <p class="login-subtitle" id="login-sub">Inserisci le tue credenziali per accedere all'area riservata</p>
+            
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username" id="label-user">Username / Nickname</label>
+                    <input type="text" id="username" placeholder="Es. Santos_Lukas" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" id="label-pass">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="login-actions">
+                    <button type="submit" class="btn-submit" id="btn-login">Accedi</button>
+                    <button type="button" class="btn-secondary" id="btn-register" onclick="alert('Registrazione temporaneamente chiusa.')">Registrati</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- PROFILE -->
         <div class="card header-profile">
-            <!-- Link diretto all'immagine (.jpg) estratto da Pinterest -->
-            <img src="https://i.pinimg.com/1200x/7f/e8/93/7fe893761ceb4d777680d4df5189a13f.jpg" alt="Santos_Lukas Avatar" class="avatar">
+            <img src="https://images.weserv.nl/?url=https://i.pinimg.com/1200x/7f/e8/93/7fe893761ceb4d777680d4df5189a13f.jpg" alt="Santos_Lukas Avatar" class="avatar">
             <h1>Santos_Lukas</h1>
             <p class="subtitle" id="prof-sub">Developer</p>
             <p class="bio" id="prof-bio">Developer & Minecraft Server Admin.</p>
@@ -333,6 +447,7 @@
             </div>
         </div>
 
+        <!-- TEAM DISAGIATI -->
         <div class="card">
             <h2 class="team-title">𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</h2>
             <span class="team-badge" id="team-badge">Team Competitivo DuckVanilla</span>
@@ -414,6 +529,12 @@
         const content = {
             ita: {
                 btn: "🌐 EN",
+                loginTitle: "Accedi al Portale",
+                loginSub: "Inserisci le tue credenziali per accedere all'area riservata",
+                labelUser: "Username / Nickname",
+                labelPass: "Password",
+                btnLogin: "Accedi",
+                btnRegister: "Registrati",
                 sub: "Developer",
                 bio: "Developer & Minecraft Server Admin.",
                 teamBadge: "Team Competitivo DuckVanilla",
@@ -447,6 +568,12 @@
             },
             eng: {
                 btn: "🌐 IT",
+                loginTitle: "Portal Login",
+                loginSub: "Enter your credentials to access the reserved area",
+                labelUser: "Username / Nickname",
+                labelPass: "Password",
+                btnLogin: "Login",
+                btnRegister: "Register",
                 sub: "Developer",
                 bio: "Developer & Minecraft Server Admin.",
                 teamBadge: "DuckVanilla Competitive Team",
@@ -485,6 +612,13 @@
             const data = content[currentLang];
 
             document.getElementById('lang-btn').innerText = data.btn;
+            document.getElementById('login-title').innerText = data.loginTitle;
+            document.getElementById('login-sub').innerText = data.loginSub;
+            document.getElementById('label-user').innerText = data.labelUser;
+            document.getElementById('label-pass').innerText = data.labelPass;
+            document.getElementById('btn-login').innerText = data.btnLogin;
+            document.getElementById('btn-register').innerText = data.btnRegister;
+
             document.getElementById('prof-sub').innerText = data.sub;
             document.getElementById('prof-bio').innerText = data.bio;
             document.getElementById('team-badge').innerText = data.teamBadge;
@@ -520,7 +654,16 @@
         function toggleHalloween() {
             document.body.classList.toggle('halloween-theme');
         }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const user = document.getElementById('username').value;
+            alert('Benvenuto, ' + user + '! Login simulato con successo.');
+        }
     </script>
+
+</body>
+</html>
 
 </body>
 </html>
