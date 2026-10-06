@@ -17,10 +17,22 @@
             --discord-color: #5865F2;
         }
 
+        body.halloween-theme {
+            --bg-color: #0d0714;
+            --card-bg: #1a0f2e;
+            --card-border: rgba(249, 115, 22, 0.2);
+            --accent-blue: #f97316;
+            --accent-purple: #a855f7;
+            --accent-gold: #eab308;
+            --text-main: #fef08a;
+            --text-sub: #cbd5e1;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
@@ -35,12 +47,41 @@
             padding: 40px 20px;
         }
 
+        .controls-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-btn:hover {
+            border-color: var(--accent-blue);
+        }
+
         .main-wrapper {
             max-width: 850px;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 30px;
+            margin-top: 30px;
         }
 
         .card {
@@ -56,18 +97,14 @@
         }
 
         .avatar {
-            width: 90px;
-            height: 90px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffffff;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            display: block;
+            border: 2px solid var(--accent-blue);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         }
 
         h1 {
@@ -274,13 +311,18 @@
 </head>
 <body>
 
+    <div class="controls-bar">
+        <button class="control-btn" onclick="toggleLanguage()" id="lang-btn">🌐 EN</button>
+        <button class="control-btn" onclick="toggleHalloween()">🎃 Halloween</button>
+    </div>
+
     <div class="main-wrapper">
         
         <div class="card header-profile">
-            <div class="avatar">SL</div>
+            <img src="https://pin.it/5RoFgcfih" alt="Santos_Lukas Avatar" class="avatar">
             <h1>Santos_Lukas</h1>
-            <p class="subtitle">Programmatore & Developer</p>
-            <p class="bio">Appassionato di programmazione, sviluppo software e gestione di progetti. Mi piace trasformare idee in codice pulito, efficiente e funzionale.</p>
+            <p class="subtitle" id="prof-sub">Programmatore & Developer</p>
+            <p class="bio" id="prof-bio">Appassionato di programmazione, sviluppo software e gestione di progetti. Mi piace trasformare idee in codice pulito, efficiente e funzionale.</p>
             
             <div class="skills">
                 <span class="tag">HTML & CSS</span>
@@ -292,16 +334,16 @@
 
         <div class="card">
             <h2 class="team-title">𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</h2>
-            <span class="team-badge">Team Competitivo DuckVanilla</span>
+            <span class="team-badge" id="team-badge">Team Competitivo DuckVanilla</span>
 
-            <div class="team-intro">
+            <div class="team-intro" id="team-intro">
                 Cerchiamo giocatori per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a migliorare, competere e vincere.
             </div>
 
             <div class="grid-container">
                 <div class="grid-box">
-                    <h3>Cosa Facciamo</h3>
-                    <ul>
+                    <h3 id="head-do">Cosa Facciamo</h3>
+                    <ul id="list-do">
                         <li>Tornei ed eventi competitivi</li>
                         <li>VOD review per analizzare errori e crescere</li>
                         <li>Strategie e coordinazione di squadra</li>
@@ -310,8 +352,8 @@
                 </div>
 
                 <div class="grid-box">
-                    <h3>Cosa Cerchiamo</h3>
-                    <ul>
+                    <h3 id="head-seek">Cosa Cerchiamo</h3>
+                    <ul id="list-seek">
                         <li>Voglia di migliorare e mettersi in gioco</li>
                         <li>Capacità di stare in gruppo senza creare drama</li>
                         <li>Costanza: se entri, ti alleni</li>
@@ -321,19 +363,20 @@
             </div>
 
             <div class="grid-box" style="margin-bottom: 25px;">
-                <h3>Ruoli Definiti</h3>
+                <h3 id="head-roles">Ruoli Definiti</h3>
                 <div class="roles">
                     <span class="role-tag">IGL</span>
                     <span class="role-tag">PvP</span>
                     <span class="role-tag">Grinder</span>
+                    <span class="role-tag">Farmer</span>
                     <span class="role-tag">Tank</span>
                     <span class="role-tag">Archer</span>
                 </div>
             </div>
 
             <div class="grid-box" style="margin-bottom: 25px;">
-                <h3>Cosa Offriamo</h3>
-                <ul>
+                <h3 id="head-offer">Cosa Offriamo</h3>
+                <ul id="list-offer">
                     <li>Team organizzato con ruoli chiari</li>
                     <li>Persone con cui grindare e crescere</li>
                     <li>Possibilità di entrare in tornei seri</li>
@@ -342,19 +385,19 @@
             </div>
 
             <div class="cta-box">
-                <h3>Come Entrare</h3>
-                <p>Prima di entrare faremo una prova per verificare skill e attitudine.</p>
+                <h3 id="head-join">Come Entrare</h3>
+                <p id="p-join">Prima di entrare faremo una prova per verificare skill e attitudine.</p>
 
                 <div class="btn-group">
                     <a href="https://discord.gg/K8VEgkxT8" target="_blank" class="btn-discord">Discord Team 𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</a>
                     <a href="https://discord.gg/mNnaGjkGp" target="_blank" class="btn-discord">Discord Server DuckVanilla</a>
                 </div>
 
-                <div class="warning-box">
+                <div class="warning-box" id="warning-text">
                     ⚠️ ATTENZIONE: Per fare domanda e diventare membri del team devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!
                 </div>
 
-                <span class="cta-highlight">Se pensi di essere al livello, dimostralo.</span>
+                <span class="cta-highlight" id="cta-highlight">Se pensi di essere al livello, dimostralo.</span>
             </div>
         </div>
 
@@ -364,6 +407,119 @@
 
     </div>
 
+    <script>
+        let currentLang = 'ita';
+
+        const content = {
+            ita: {
+                btn: "🌐 EN",
+                sub: "Programmatore & Developer",
+                bio: "Appassionato di programmazione, sviluppo software e gestione di progetti. Mi piace trasformare idee in codice pulito, efficiente e funzionale.",
+                teamBadge: "Team Competitivo DuckVanilla",
+                teamIntro: "Cerchiamo giocatori per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a migliorare, competere e vincere.",
+                headDo: "Cosa Facciamo",
+                listDo: [
+                    "Tornei ed eventi competitivi",
+                    "VOD review per analizzare errori e crescere",
+                    "Strategie e coordinazione di squadra",
+                    "Grind e preparazione insieme"
+                ],
+                headSeek: "Cosa Cerchiamo",
+                listSeek: [
+                    "Voglia di migliorare e mettersi in gioco",
+                    "Capacità di stare in gruppo senza creare drama",
+                    "Costanza: se entri, ti alleni",
+                    "Attitudine competitiva, non tossica"
+                ],
+                headRoles: "Ruoli Definiti",
+                headOffer: "Cosa Offriamo",
+                listOffer: [
+                    "Team organizzato con ruoli chiari",
+                    "Persone con cui grindare e crescere",
+                    "Possibilità di entrare in tornei seri",
+                    "Ambiente serio ma senza stress inutile"
+                ],
+                headJoin: "Come Entrare",
+                pJoin: "Prima di entrare faremo una prova per verificare skill e attitudine.",
+                warning: "⚠️ ATTENZIONE: Per fare domanda e diventare membri del team devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!",
+                highlight: "Se pensi di essere al livello, dimostralo."
+            },
+            eng: {
+                btn: "🌐 IT",
+                sub: "Programmer & Developer",
+                bio: "Passionate about programming, software development, and project management. I love turning ideas into clean, efficient, and functional code.",
+                teamBadge: "DuckVanilla Competitive Team",
+                teamIntro: "We are looking for players for our competitive roster on <strong>DuckVanilla</strong>. We are not a basic team: we aren't looking for casual weekly players, but individuals ready to improve, compete, and win.",
+                headDo: "What We Do",
+                listDo: [
+                    "Tournaments and competitive events",
+                    "VOD reviews to analyze mistakes and grow",
+                    "Team strategies and coordination",
+                    "Grinding and preparing together"
+                ],
+                headSeek: "What We Look For",
+                listSeek: [
+                    "Drive to improve and push your limits",
+                    "Ability to play as a team without creating drama",
+                    "Consistency: if you join, you practice",
+                    "Competitive, non-toxic attitude"
+                ],
+                headRoles: "Defined Roles",
+                headOffer: "What We Offer",
+                listOffer: [
+                    "Organized team with clear roles",
+                    "Teammates to grind and grow with",
+                    "Opportunity to join serious tournaments",
+                    "Serious environment without useless stress"
+                ],
+                headJoin: "How to Join",
+                pJoin: "Before joining, we will hold a tryout to test your skills and attitude.",
+                warning: "⚠️ WARNING: To apply and join the team, you MUST open a ticket in the TEAM DISCORD (not in the main server Discord)!",
+                highlight: "If you think you've got what it takes, prove it."
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ita' ? 'eng' : 'ita';
+            const data = content[currentLang];
+
+            document.getElementById('lang-btn').innerText = data.btn;
+            document.getElementById('prof-sub').innerText = data.sub;
+            document.getElementById('prof-bio').innerText = data.bio;
+            document.getElementById('team-badge').innerText = data.teamBadge;
+            document.getElementById('team-intro').innerHTML = data.teamIntro;
+            
+            document.getElementById('head-do').innerText = data.headDo;
+            updateList('list-do', data.listDo);
+
+            document.getElementById('head-seek').innerText = data.headSeek;
+            updateList('list-seek', data.listSeek);
+
+            document.getElementById('head-roles').innerText = data.headRoles;
+
+            document.getElementById('head-offer').innerText = data.headOffer;
+            updateList('list-offer', data.listOffer);
+
+            document.getElementById('head-join').innerText = data.headJoin;
+            document.getElementById('p-join').innerText = data.pJoin;
+            document.getElementById('warning-text').innerText = data.warning;
+            document.getElementById('cta-highlight').innerText = data.highlight;
+        }
+
+        function updateList(elementId, items) {
+            const ul = document.getElementById(elementId);
+            ul.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = item;
+                ul.appendChild(li);
+            });
+        }
+
+        function toggleHalloween() {
+            document.body.classList.toggle('halloween-theme');
+        }
+    </script>
+
 </body>
-</html>
 </html>
