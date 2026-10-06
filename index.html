@@ -9,8 +9,8 @@
 
         :root {
             --bg-color: #06040a;
-            --card-bg: #110a1c;
-            --card-border: rgba(168, 85, 247, 0.3);
+            --card-bg: rgba(17, 10, 28, 0.85); /* Sfondo semi-trasparente per far vedere l'immagine sotto */
+            --card-border: rgba(168, 85, 247, 0.4);
             --accent-blue: #c084fc;
             --accent-purple: #9333ea;
             --accent-gold: #f97316;
@@ -22,9 +22,8 @@
         }
 
         body.spooky-mode {
-            --bg-color: #020105;
-            --card-bg: #0c0517;
-            --card-border: rgba(239, 68, 68, 0.4);
+            --card-bg: rgba(12, 5, 23, 0.88);
+            --card-border: rgba(239, 68, 68, 0.5);
             --accent-blue: #ef4444;
             --accent-purple: #7e22ce;
             --accent-gold: #eab308;
@@ -50,13 +49,26 @@
             min-height: 100vh;
             padding: 40px 20px;
             position: relative;
+            
+            /* SFONDO CON IMMAGINE E OVERLAY */
             background-image: 
-                radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.15), transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1), transparent 40%);
+                linear-gradient(to bottom, rgba(6, 4, 10, 0.75), rgba(6, 4, 10, 0.85)),
+                url('https://images.weserv.nl/?url=https://i.pinimg.com/1200x/8f/2f/a1/8f2fa109a5aff155ff83251bd11c075d.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             overflow-x: hidden;
         }
 
-        /* SFONDO SPETTRALE CON RAGNABATTI/NEBBIA */
+        /* EFFETTO SFONDO BLOOD MODE */
+        body.spooky-mode {
+            background-image: 
+                linear-gradient(to bottom, rgba(20, 2, 5, 0.8), rgba(5, 1, 8, 0.9)),
+                url('https://images.weserv.nl/?url=https://i.pinimg.com/1200x/8f/2f/a1/8f2fa109a5aff155ff83251bd11c075d.jpg');
+        }
+
+        /* DECORAZIONE RAGNATELE FIX SULLE ANGOLE */
         body::before {
             content: "🕸️";
             position: fixed;
@@ -91,7 +103,7 @@
         }
 
         .control-btn {
-            background-color: var(--card-bg);
+            background-color: rgba(17, 10, 28, 0.9);
             color: var(--text-main);
             border: 1px solid var(--card-border);
             padding: 8px 16px;
@@ -99,6 +111,7 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 0.85rem;
+            backdrop-filter: blur(8px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 10px var(--card-border);
             display: flex;
             align-items: center;
@@ -122,10 +135,12 @@
 
         .card {
             background-color: var(--card-bg);
+            backdrop-filter: blur(12px); /* Effetto vetro opaco per far risaltare il testo */
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 40px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(147, 51, 234, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(147, 51, 234, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -136,7 +151,7 @@
             bottom: 10px;
             right: 15px;
             font-size: 1.2rem;
-            opacity: 0.2;
+            opacity: 0.25;
         }
 
         .header-profile {
@@ -175,7 +190,7 @@
             font-size: 2.8rem;
             color: var(--text-main);
             letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--accent-purple);
+            text-shadow: 0 0 12px var(--accent-purple);
             margin-bottom: 2px;
         }
 
@@ -204,14 +219,14 @@
         }
 
         .tag {
-            background-color: rgba(147, 51, 234, 0.15);
-            color: var(--accent-blue);
+            background-color: rgba(147, 51, 234, 0.25);
+            color: var(--text-main);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid rgba(168, 85, 247, 0.4);
-            box-shadow: 0 0 8px rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
         }
 
         /* TEAM DISAGIATI STYLES SPOOKY */
@@ -240,7 +255,7 @@
         }
 
         .team-intro {
-            background: rgba(147, 51, 234, 0.1);
+            background: rgba(147, 51, 234, 0.15);
             border-left: 4px solid var(--accent-gold);
             padding: 15px 20px;
             border-radius: 0 12px 12px 0;
@@ -258,7 +273,7 @@
         }
 
         .grid-box {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
@@ -304,24 +319,24 @@
         }
 
         .role-tag {
-            background: rgba(249, 115, 22, 0.15);
+            background: rgba(249, 115, 22, 0.2);
             color: var(--accent-gold);
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.8rem;
             font-weight: bold;
-            border: 1px solid rgba(249, 115, 22, 0.4);
-            box-shadow: 0 0 5px rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            box-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
         }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(249, 115, 22, 0.15));
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.25), rgba(249, 115, 22, 0.2));
             border: 1px solid var(--accent-gold);
             border-radius: 14px;
             padding: 25px;
             text-align: center;
             margin-top: 10px;
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
         }
 
         .cta-box h3 {
@@ -366,15 +381,15 @@
         }
 
         .warning-box {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.4);
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
             border-radius: 8px;
             padding: 12px;
             margin-top: 15px;
             color: #fca5a5;
             font-size: 0.9rem;
             font-weight: 600;
-            text-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
+            text-shadow: 0 0 5px rgba(239, 68, 68, 0.4);
         }
 
         .cta-highlight {
@@ -390,6 +405,7 @@
             font-size: 0.85rem;
             color: var(--text-sub);
             padding-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
@@ -442,7 +458,7 @@
                 </div>
 
                 <div class="grid-box">
-                    <h3 id="head-seek">👁️ Cosa Cerchiamo</h3>
+                    <h3 id="head-seek">👁️️ Cosa Cerchiamo</h3>
                     <ul id="list-seek">
                         <li>Voglia di migliorare e spingersi oltre</li>
                         <li>Capacità di stare in gruppo senza creare drama</li>
@@ -555,7 +571,7 @@
                     "Relentless, non-toxic attitude"
                 ],
                 headRoles: "📜 Defined Roles",
-                headOffer: "🔮 What We Offer",
+                headOffer: "What We Offer",
                 listOffer: [
                     "Organized team with clear roles",
                     "Teammates to grind and dominate with",
