@@ -9,7 +9,7 @@
 
         :root {
             --bg-color: #06040a;
-            --card-bg: rgba(17, 10, 28, 0.85); /* Sfondo semi-trasparente per far vedere l'immagine sotto */
+            --card-bg: rgba(17, 10, 28, 0.85);
             --card-border: rgba(168, 85, 247, 0.4);
             --accent-blue: #c084fc;
             --accent-purple: #9333ea;
@@ -50,7 +50,6 @@
             padding: 40px 20px;
             position: relative;
             
-            /* SFONDO CON IMMAGINE E OVERLAY */
             background-image: 
                 linear-gradient(to bottom, rgba(6, 4, 10, 0.75), rgba(6, 4, 10, 0.85)),
                 url('https://images.weserv.nl/?url=https://i.pinimg.com/1200x/8f/2f/a1/8f2fa109a5aff155ff83251bd11c075d.jpg');
@@ -61,14 +60,12 @@
             overflow-x: hidden;
         }
 
-        /* EFFETTO SFONDO BLOOD MODE */
         body.spooky-mode {
             background-image: 
                 linear-gradient(to bottom, rgba(20, 2, 5, 0.8), rgba(5, 1, 8, 0.9)),
                 url('https://images.weserv.nl/?url=https://i.pinimg.com/1200x/8f/2f/a1/8f2fa109a5aff155ff83251bd11c075d.jpg');
         }
 
-        /* DECORAZIONE RAGNATELE FIX SULLE ANGOLE */
         body::before {
             content: "🕸️";
             position: fixed;
@@ -92,7 +89,6 @@
             z-index: 999;
         }
 
-        /* CONTROLLI SITO */
         .controls-bar {
             position: fixed;
             top: 20px;
@@ -135,7 +131,7 @@
 
         .card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(12px); /* Effetto vetro opaco per far risaltare il testo */
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 40px;
@@ -229,7 +225,7 @@
             box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
         }
 
-        /* TEAM DISAGIATI STYLES SPOOKY */
+        /* TEAM DISAGIATI STYLES */
         .team-title {
             text-align: center;
             font-family: 'Pirata One', cursive, sans-serif;
@@ -311,22 +307,40 @@
             top: 2px;
         }
 
+        /* RUOLI PIÙ GRANDI E CLICCABILI */
         .roles {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 12px;
+            margin-top: 12px;
         }
 
         .role-tag {
-            background: rgba(249, 115, 22, 0.2);
-            color: var(--accent-gold);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(147, 51, 234, 0.3));
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-weight: bold;
-            border: 1px solid rgba(249, 115, 22, 0.5);
-            box-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 8px rgba(249, 115, 22, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .role-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.45), rgba(147, 51, 234, 0.5));
+            border-color: #ffffff;
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6), 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .role-tag:active {
+            transform: translateY(-1px) scale(0.98);
         }
 
         .cta-box {
@@ -400,6 +414,103 @@
             text-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
         }
 
+        /* MODALE SCREAMER PER I RUOLI */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #0f071a;
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            max-width: 420px;
+            width: 90%;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.6), inset 0 0 20px rgba(147, 51, 234, 0.4);
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+            animation: screamShake 0.4s ease-in-out;
+        }
+
+        @keyframes screamShake {
+            0% { transform: scale(0.8) rotate(-3deg); }
+            20% { transform: scale(1.1) rotate(3deg); }
+            40% { transform: scale(0.95) rotate(-2deg); }
+            60% { transform: scale(1.05) rotate(1deg); }
+            80% { transform: scale(0.98) rotate(0deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .scream-img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--blood-red);
+            box-shadow: 0 0 20px var(--blood-red);
+            margin: 0 auto 15px auto;
+            display: block;
+            filter: drop-shadow(0 0 10px #000);
+        }
+
+        .modal-title {
+            font-family: 'Pirata One', cursive, sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+        }
+
+        .modal-desc {
+            color: #e9d5ff;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, var(--blood-red), #991b1b);
+            color: #ffffff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #dc2626, #7f1d1d);
+        }
+
         footer {
             text-align: center;
             font-size: 0.85rem;
@@ -469,14 +580,14 @@
             </div>
 
             <div class="grid-box" style="margin-bottom: 25px;">
-                <h3 id="head-roles">📜 Ruoli Definiti</h3>
+                <h3 id="head-roles">📜 Ruoli Definiti (Clicca per scoprire)</h3>
                 <div class="roles">
-                    <span class="role-tag">IGL</span>
-                    <span class="role-tag">PvP Master</span>
-                    <span class="role-tag">Grinder</span>
-                    <span class="role-tag">Farmer</span>
-                    <span class="role-tag">Tank</span>
-                    <span class="role-tag">Archer</span>
+                    <span class="role-tag" onclick="openRoleModal('IGL')">👑 IGL</span>
+                    <span class="role-tag" onclick="openRoleModal('PvP Master')">⚔️ PvP Master</span>
+                    <span class="role-tag" onclick="openRoleModal('Grinder')">⛏️ Grinder</span>
+                    <span class="role-tag" onclick="openRoleModal('Farmer')">🌾 Farmer</span>
+                    <span class="role-tag" onclick="openRoleModal('Tank')">🛡️ Tank</span>
+                    <span class="role-tag" onclick="openRoleModal('Archer')">🏹 Archer</span>
                 </div>
             </div>
 
@@ -513,8 +624,73 @@
 
     </div>
 
+    <!-- MODALE POP-UP SCREAMER -->
+    <div class="modal-overlay" id="roleModal">
+        <div class="modal-card">
+            <img src="https://images.weserv.nl/?url=https://i.pinimg.com/736x/00/8f/4c/008f4cd5a8ff9835a284d952eb00b024.jpg" alt="Scream Icon" class="scream-img">
+            <h3 class="modal-title" id="modalRoleTitle">TITOLO RUOLO</h3>
+            <p class="modal-desc" id="modalRoleDesc">Descrizione del ruolo...</p>
+            <button class="close-btn" onclick="closeRoleModal()">Chiudi 🩸</button>
+        </div>
+    </div>
+
     <script>
         let currentLang = 'ita';
+
+        const roleDetails = {
+            ita: {
+                'IGL': {
+                    title: '👑 In-Game Leader (IGL)',
+                    desc: 'Il cervello tattico della squadra. Prende le decisioni durante i combattimenti, gestisce il posizionamento e chiama le chiamate decisive in chat vocale.'
+                },
+                'PvP Master': {
+                    title: '⚔️ PvP Master',
+                    desc: 'La forza d\'urto principale. Dominatore dei combattimenti ravvicinati, specializzato nel fare kill rapide, pushare i nemici e ribaltare la situazione in fight.'
+                },
+                'Grinder': {
+                    title: '⛏️ Grinder',
+                    desc: 'La risorsa inesauribile. Si occupa di reperire i materiali più rari, preparare set, op e kit pronti per ogni tornei ed emergenze.'
+                },
+                'Farmer': {
+                    title: '🌾 Farmer',
+                    desc: 'L\'alchimista ed economista del team. Gestisce le farm, le pozioni, il cibo e garantisce che il team abbia sempre risorse e monete illimitate.'
+                },
+                'Tank': {
+                    title: '🛡️ Tank',
+                    desc: 'Lo scudo umano. Assorbe il danno nemico, rompe le formazioni avversarie e protegge i compagni con armature pesanti e strategie difensive.'
+                },
+                'Archer': {
+                    title: '🏹 Archer',
+                    desc: 'Il cecchino dalla distanza. Copre i compagni da lontano, infligge danni costanti prima del contatto fisico e blocca la ritirata dei nemici.'
+                }
+            },
+            eng: {
+                'IGL': {
+                    title: '👑 In-Game Leader (IGL)',
+                    desc: 'The team\'s tactical brain. Makes calls during fights, handles positioning, and directs war strategies on voice chat.'
+                },
+                'PvP Master': {
+                    title: '⚔️ PvP Master',
+                    desc: 'Main offensive power. Master of close-range combat, specialized in fast kills and pushing enemy lines.'
+                },
+                'Grinder': {
+                    title: '⛏️ Grinder',
+                    desc: 'Endless resource provider. Focuses on gathering rare items, gearing up, and preparing OP kits for tournaments.'
+                },
+                'Farmer': {
+                    title: '🌾 Farmer',
+                    desc: 'Economist & alchemist. Manages farms, potions, food, and ensures the team never runs out of money and supplies.'
+                },
+                'Tank': {
+                    title: '🛡️ Tank',
+                    desc: 'The human shield. Absorbs incoming damage, disrupts enemy setups, and protects teammates with heavy armor.'
+                },
+                'Archer': {
+                    title: '🏹 Archer',
+                    desc: 'Long-range sniper. Provides cover fire from afar, weakens enemies before engagement, and stops fleeing targets.'
+                }
+            }
+        };
 
         const content = {
             ita: {
@@ -537,7 +713,7 @@
                     "Costanza: se entri, ti alleni seriamente",
                     "Attitudine spietata, non tossica"
                 ],
-                headRoles: "📜 Ruoli Definiti",
+                headRoles: "📜 Ruoli Definiti (Clicca per scoprire)",
                 headOffer: "🔮 Cosa Offriamo",
                 listOffer: [
                     "Team organizzato con ruoli definiti",
@@ -570,8 +746,8 @@
                     "Consistency: if you join, you train seriously",
                     "Relentless, non-toxic attitude"
                 ],
-                headRoles: "📜 Defined Roles",
-                headOffer: "What We Offer",
+                headRoles: "📜 Defined Roles (Click to reveal)",
+                headOffer: "🔮 What We Offer",
                 listOffer: [
                     "Organized team with clear roles",
                     "Teammates to grind and dominate with",
@@ -626,6 +802,27 @@
         function toggleSpookyMode() {
             document.body.classList.toggle('spooky-mode');
         }
+
+        /* FUNZIONI PER APRIRE E CHIUDERE LA MODALE RUOLO */
+        function openRoleModal(roleKey) {
+            const roleData = roleDetails[currentLang][roleKey];
+            if(roleData) {
+                document.getElementById('modalRoleTitle').innerText = roleData.title;
+                document.getElementById('modalRoleDesc').innerText = roleData.desc;
+                document.getElementById('roleModal').classList.add('active');
+            }
+        }
+
+        function closeRoleModal() {
+            document.getElementById('roleModal').classList.remove('active');
+        }
+
+        // Chiudi modale cliccando fuori dal riquadro
+        document.getElementById('roleModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRoleModal();
+            }
+        });
     </script>
 
 </body>
