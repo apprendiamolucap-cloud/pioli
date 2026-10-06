@@ -14,6 +14,7 @@
             --accent-gold: #f59e0b;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
+            --discord-color: #5865F2;
         }
 
         * {
@@ -220,10 +221,46 @@
             margin-bottom: 15px;
         }
 
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .btn-discord {
+            display: inline-block;
+            background-color: var(--discord-color);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-discord:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         .cta-highlight {
             font-weight: bold;
             color: var(--accent-gold);
-            margin-top: 10px;
+            margin-top: 15px;
             display: block;
         }
 
@@ -306,7 +343,17 @@
 
             <div class="cta-box">
                 <h3>Come Entrare</h3>
-                <p>Scrivici in DM oppure apri un ticket nel nostro server Discord.<br>Prima di entrare faremo una prova per verificare skill e attitudine.</p>
+                <p>Prima di entrare faremo una prova per verificare skill e attitudine.</p>
+
+                <div class="btn-group">
+                    <a href="https://discord.gg/K8VEgkxT8" target="_blank" class="btn-discord">Discord Team 𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</a>
+                    <a href="https://discord.gg/mNnaGjkGp" target="_blank" class="btn-discord">Discord Server DuckVanilla</a>
+                </div>
+
+                <div class="warning-box">
+                    ⚠️ ATTENZIONE: Per fare domanda e diventare membri del team devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!
+                </div>
+
                 <span class="cta-highlight">Se pensi di essere al livello, dimostralo.</span>
             </div>
         </div>
