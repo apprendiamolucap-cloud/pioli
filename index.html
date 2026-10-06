@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santos_Lukas | Portfolio & Team 𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Pirata+One&family=Roboto:wght@400;700&display=swap');
+
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151d2a;
-            --card-border: rgba(255, 255, 255, 0.08);
-            --accent-blue: #38bdf8;
-            --accent-purple: #c084fc;
-            --accent-gold: #f59e0b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
+            --bg-color: #06040a;
+            --card-bg: #110a1c;
+            --card-border: rgba(168, 85, 247, 0.3);
+            --accent-blue: #c084fc;
+            --accent-purple: #9333ea;
+            --accent-gold: #f97316;
+            --spooky-green: #22c55e;
+            --blood-red: #ef4444;
+            --text-main: #f3e8ff;
+            --text-sub: #a855f7;
             --discord-color: #5865F2;
         }
 
-        body.halloween-theme {
-            --bg-color: #0d0714;
-            --card-bg: #1a0f2e;
-            --card-border: rgba(249, 115, 22, 0.2);
-            --accent-blue: #f97316;
-            --accent-purple: #a855f7;
+        body.spooky-mode {
+            --bg-color: #020105;
+            --card-bg: #0c0517;
+            --card-border: rgba(239, 68, 68, 0.4);
+            --accent-blue: #ef4444;
+            --accent-purple: #7e22ce;
             --accent-gold: #eab308;
             --text-main: #fef08a;
-            --text-sub: #cbd5e1;
+            --text-sub: #f87171;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s, color 0.4s, border-color 0.4s;
         }
 
         body {
@@ -46,6 +50,34 @@
             min-height: 100vh;
             padding: 40px 20px;
             position: relative;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1), transparent 40%);
+            overflow-x: hidden;
+        }
+
+        /* SFONDO SPETTRALE CON RAGNABATTI/NEBBIA */
+        body::before {
+            content: "🕸️";
+            position: fixed;
+            top: -10px;
+            left: -10px;
+            font-size: 5rem;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        body::after {
+            content: "🕸️";
+            position: fixed;
+            top: -10px;
+            right: -10px;
+            font-size: 5rem;
+            opacity: 0.3;
+            transform: scaleX(-1);
+            pointer-events: none;
+            z-index: 999;
         }
 
         /* CONTROLLI SITO */
@@ -62,19 +94,20 @@
             background-color: var(--card-bg);
             color: var(--text-main);
             border: 1px solid var(--card-border);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.85rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 10px var(--card-border);
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .control-btn:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
         }
 
         .main-wrapper {
@@ -84,6 +117,7 @@
             flex-direction: column;
             gap: 30px;
             margin-top: 20px;
+            position: relative;
         }
 
         .card {
@@ -91,42 +125,73 @@
             border-radius: 20px;
             padding: 40px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(147, 51, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: "🦇";
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 1.2rem;
+            opacity: 0.2;
         }
 
         .header-profile {
             text-align: center;
         }
 
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
         .avatar {
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 15px auto;
             display: block;
-            border: 3px solid var(--accent-blue);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            border: 3px solid var(--accent-purple);
+            box-shadow: 0 0 25px var(--accent-purple), 0 0 10px var(--accent-gold);
+            filter: grayscale(20%) contrast(110%);
+        }
+
+        .avatar-container::before {
+            content: "👑";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 5px var(--accent-gold));
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-family: 'Pirata One', cursive, 'Segoe UI', sans-serif;
+            font-size: 2.8rem;
             color: var(--text-main);
-            margin-bottom: 6px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-purple);
+            margin-bottom: 2px;
         }
 
         .subtitle {
-            color: var(--accent-blue);
+            color: var(--accent-gold);
             font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-weight: bold;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
         }
 
         .bio {
             margin-top: 12px;
             font-size: 0.95rem;
-            color: var(--text-sub);
+            color: #d8b4fe;
             text-align: center;
         }
 
@@ -139,102 +204,27 @@
         }
 
         .tag {
-            background-color: rgba(56, 189, 248, 0.08);
+            background-color: rgba(147, 51, 234, 0.15);
             color: var(--accent-blue);
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.2);
         }
 
-        /* SEZIONE RUOTA DELLA FORTUNA */
-        .wheel-section {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .wheel-title {
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 5px;
-        }
-
-        .wheel-sub {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            margin-bottom: 20px;
-        }
-
-        .wheel-wrapper {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 20px auto;
-        }
-
-        .wheel-pointer {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid var(--accent-gold);
-            z-index: 10;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        canvas#wheelCanvas {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        }
-
-        .btn-spin {
-            background: linear-gradient(135deg, var(--accent-gold), #d97706);
-            color: #ffffff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .btn-spin:hover:not(:disabled) {
-            transform: translateY(-2px);
-            opacity: 0.95;
-        }
-
-        .btn-spin:disabled {
-            background: #475569;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .wheel-result {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent-blue);
-            min-height: 28px;
-        }
-
-        /* TEAM DISAGIATI STYLES */
+        /* TEAM DISAGIATI STYLES SPOOKY */
         .team-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #ffffff, var(--accent-purple));
+            font-family: 'Pirata One', cursive, sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff, var(--accent-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px var(--accent-purple));
         }
 
         .team-badge {
@@ -246,16 +236,18 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 25px;
+            text-shadow: 0 0 5px rgba(249, 115, 22, 0.6);
         }
 
         .team-intro {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid var(--accent-purple);
+            background: rgba(147, 51, 234, 0.1);
+            border-left: 4px solid var(--accent-gold);
             padding: 15px 20px;
             border-radius: 0 12px 12px 0;
             margin-bottom: 30px;
-            color: var(--text-sub);
+            color: #e9d5ff;
             font-size: 1rem;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
         .grid-container {
@@ -266,19 +258,22 @@
         }
 
         .grid-box {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+            position: relative;
         }
 
         .grid-box h3 {
-            color: var(--accent-blue);
+            color: var(--accent-gold);
             font-size: 1.1rem;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
+            text-shadow: 0 0 5px rgba(249, 115, 22, 0.4);
         }
 
         .grid-box ul {
@@ -287,18 +282,18 @@
 
         .grid-box ul li {
             position: relative;
-            padding-left: 18px;
+            padding-left: 20px;
             margin-bottom: 8px;
-            color: var(--text-sub);
+            color: #d8b4fe;
             font-size: 0.95rem;
         }
 
         .grid-box ul li::before {
-            content: "•";
+            content: "☠️";
             position: absolute;
             left: 0;
-            color: var(--accent-purple);
-            font-weight: bold;
+            font-size: 0.75rem;
+            top: 2px;
         }
 
         .roles {
@@ -309,32 +304,36 @@
         }
 
         .role-tag {
-            background: rgba(192, 132, 252, 0.15);
-            color: var(--accent-purple);
+            background: rgba(249, 115, 22, 0.15);
+            color: var(--accent-gold);
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.8rem;
             font-weight: bold;
-            border: 1px solid rgba(192, 132, 252, 0.3);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            box-shadow: 0 0 5px rgba(249, 115, 22, 0.2);
         }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(192, 132, 252, 0.1));
-            border: 1px solid rgba(192, 132, 252, 0.3);
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(249, 115, 22, 0.15));
+            border: 1px solid var(--accent-gold);
             border-radius: 14px;
             padding: 25px;
             text-align: center;
             margin-top: 10px;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);
         }
 
         .cta-box h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-main);
             margin-bottom: 8px;
+            font-family: 'Pirata One', cursive, sans-serif;
+            letter-spacing: 1px;
         }
 
         .cta-box p {
-            color: var(--text-sub);
+            color: #d8b4fe;
             font-size: 0.95rem;
             margin-bottom: 15px;
         }
@@ -356,23 +355,26 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 0.9rem;
-            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+            transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
         }
 
         .btn-discord:hover {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(88, 101, 242, 0.6);
         }
 
         .warning-box {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
             border-radius: 8px;
             padding: 12px;
             margin-top: 15px;
-            color: var(--accent-gold);
+            color: #fca5a5;
             font-size: 0.9rem;
             font-weight: 600;
+            text-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
         }
 
         .cta-highlight {
@@ -380,6 +382,7 @@
             color: var(--accent-gold);
             margin-top: 15px;
             display: block;
+            text-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
         }
 
         footer {
@@ -395,76 +398,65 @@
     <!-- BARRA DI CONTROLLO -->
     <div class="controls-bar">
         <button class="control-btn" onclick="toggleLanguage()" id="lang-btn">🌐 EN</button>
-        <button class="control-btn" onclick="toggleHalloween()">🎃 Halloween</button>
+        <button class="control-btn" onclick="toggleSpookyMode()">🩸 Blood Mode</button>
     </div>
 
     <div class="main-wrapper">
         
         <!-- PROFILO -->
         <div class="card header-profile">
-            <img src="https://images.weserv.nl/?url=https://i.pinimg.com/1200x/7f/e8/93/7fe893761ceb4d777680d4df5189a13f.jpg" alt="Santos_Lukas Avatar" class="avatar">
+            <div class="avatar-container">
+                <img src="https://images.weserv.nl/?url=https://i.pinimg.com/1200x/7f/e8/93/7fe893761ceb4d777680d4df5189a13f.jpg" alt="Santos_Lukas Avatar" class="avatar">
+            </div>
             <h1>Santos_Lukas</h1>
-            <p class="subtitle" id="prof-sub">Developer</p>
-            <p class="bio" id="prof-bio">Developer & Minecraft Server Admin.</p>
+            <p class="subtitle" id="prof-sub">Developer & Server Admin</p>
+            <p class="bio" id="prof-bio">Developer & Minecraft Server Admin. Master of Darkness & Code.</p>
             
             <div class="skills">
-                <span class="tag">HTML & CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">Python</span>
-                <span class="tag">Git & GitHub</span>
+                <span class="tag">🔮 Java / Paper</span>
+                <span class="tag">🕷️ HTML & CSS</span>
+                <span class="tag">⚡ JavaScript</span>
+                <span class="tag">🐍 Python</span>
+                <span class="tag">💀 Git & GitHub</span>
             </div>
-        </div>
-
-        <!-- RUOTA DELLA FORTUNA -->
-        <div class="card wheel-section">
-            <h2 class="wheel-title">🎡 Ruota della Fortuna</h2>
-            <p class="wheel-sub" id="wheel-sub-text">Gira la ruota ogni 24 ore per vincere premi esclusivi nel server!</p>
-            
-            <div class="wheel-wrapper">
-                <div class="wheel-pointer"></div>
-                <canvas id="wheelCanvas" width="300" height="300"></canvas>
-            </div>
-
-            <button class="btn-spin" id="spinBtn" onclick="spinWheel()">GIRA LA RUOTA!</button>
-            <div class="wheel-result" id="wheelResult"></div>
         </div>
 
         <!-- TEAM DISAGIATI -->
         <div class="card">
-            <h2 class="team-title">𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</h2>
+            <h2 class="team-title">𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎 🗡️</h2>
             <span class="team-badge" id="team-badge">Team Competitivo DuckVanilla</span>
 
             <div class="team-intro" id="team-intro">
-                Cerchiamo giocatori per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a migliorare, competere e vincere.
+                Cerchiamo guerrieri per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a dominare, competere e distruggere gli avversari.
             </div>
 
             <div class="grid-container">
                 <div class="grid-box">
-                    <h3 id="head-do">Cosa Facciamo</h3>
+                    <h3 id="head-do">🕷️ Cosa Facciamo</h3>
                     <ul id="list-do">
                         <li>Tornei ed eventi competitivi</li>
                         <li>VOD review per analizzare errori e crescere</li>
-                        <li>Strategie e coordinazione di squadra</li>
-                        <li>Grind e preparazione insieme</li>
+                        <li>Strategie di guerra e coordinazione</li>
+                        <li>Grind e preparazione costante</li>
                     </ul>
                 </div>
 
                 <div class="grid-box">
-                    <h3 id="head-seek">Cosa Cerchiamo</h3>
+                    <h3 id="head-seek">👁️ Cosa Cerchiamo</h3>
                     <ul id="list-seek">
-                        <li>Voglia di migliorare e mettersi in gioco</li>
+                        <li>Voglia di migliorare e spingersi oltre</li>
                         <li>Capacità di stare in gruppo senza creare drama</li>
-                        <li>Costanza: se entri, ti alleni</li>
-                        <li>Attitudine competitiva, non tossica</li>
+                        <li>Costanza: se entri, ti alleni seriamente</li>
+                        <li>Attitudine spietata, non tossica</li>
                     </ul>
                 </div>
             </div>
 
             <div class="grid-box" style="margin-bottom: 25px;">
-                <h3 id="head-roles">Ruoli Definiti</h3>
+                <h3 id="head-roles">📜 Ruoli Definiti</h3>
                 <div class="roles">
                     <span class="role-tag">IGL</span>
-                    <span class="role-tag">PvP</span>
+                    <span class="role-tag">PvP Master</span>
                     <span class="role-tag">Grinder</span>
                     <span class="role-tag">Farmer</span>
                     <span class="role-tag">Tank</span>
@@ -473,18 +465,18 @@
             </div>
 
             <div class="grid-box" style="margin-bottom: 25px;">
-                <h3 id="head-offer">Cosa Offriamo</h3>
+                <h3 id="head-offer">🔮 Cosa Offriamo</h3>
                 <ul id="list-offer">
-                    <li>Team organizzato con ruoli chiari</li>
-                    <li>Persone con cui grindare e crescere</li>
-                    <li>Possibilità di entrare in tornei seri</li>
-                    <li>Ambiente serio ma senza stress inutile</li>
+                    <li>Team organizzato con ruoli definiti</li>
+                    <li>Compagni con cui grindare e dominare</li>
+                    <li>Possibilità di entrare in tornei importanti</li>
+                    <li>Ambiente serio e privo di perdite di tempo</li>
                 </ul>
             </div>
 
             <div class="cta-box">
-                <h3 id="head-join">Come Entrare</h3>
-                <p id="p-join">Prima di entrare faremo una prova per verificare skill e attitudine.</p>
+                <h3 id="head-join">🎃 Come Entrare nel Roster</h3>
+                <p id="p-join">Prima di entrare farai un provino per verificare skill, sangue freddo e attitudine.</p>
 
                 <div class="btn-group">
                     <a href="https://discord.gg/K8VEgkxT8" target="_blank" class="btn-discord">Discord Team 𝕯𝖎𝖘𝖆𝖌𝖎𝖆𝖙𝖎</a>
@@ -492,15 +484,15 @@
                 </div>
 
                 <div class="warning-box" id="warning-text">
-                    ⚠️ ATTENZIONE: Per fare domanda e diventare membri del team devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!
+                    ⚠️ ATTENZIONE: Per fare domanda e diventare membro devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!
                 </div>
 
-                <span class="cta-highlight" id="cta-highlight">Se pensi di essere al livello, dimostralo.</span>
+                <span class="cta-highlight" id="cta-highlight">Se credi di avere il coraggio necessario, dimostralo.</span>
             </div>
         </div>
 
         <footer>
-            <p>© Santos_Lukas — GitHub Pages</p>
+            <p>© Santos_Lukas — Dark Edition Portfolio</p>
         </footer>
 
     </div>
@@ -511,73 +503,69 @@
         const content = {
             ita: {
                 btn: "🌐 EN",
-                sub: "Developer",
-                bio: "Developer & Minecraft Server Admin.",
-                wheelSub: "Gira la ruota ogni 24 ore per vincere premi esclusivi nel server!",
-                spinBtn: "GIRA LA RUOTA!",
+                sub: "Developer & Server Admin",
+                bio: "Developer & Minecraft Server Admin. Master of Darkness & Code.",
                 teamBadge: "Team Competitivo DuckVanilla",
-                teamIntro: "Cerchiamo giocatori per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a migliorare, competere e vincere.",
-                headDo: "Cosa Facciamo",
+                teamIntro: "Cerchiamo guerrieri per il nostro roster competitivo su <strong>DuckVanilla</strong>. Non siamo un team base: non cerchiamo gente che gioca una volta a settimana per passare il tempo, ma persone pronte a dominare, competere e distruggere gli avversari.",
+                headDo: "🕷️ Cosa Facciamo",
                 listDo: [
                     "Tornei ed eventi competitivi",
                     "VOD review per analizzare errori e crescere",
-                    "Strategie e coordinazione di squadra",
-                    "Grind e preparazione insieme"
+                    "Strategie di guerra e coordinazione",
+                    "Grind e preparazione costante"
                 ],
-                headSeek: "Cosa Cerchiamo",
+                headSeek: "👁️ Cosa Cerchiamo",
                 listSeek: [
-                    "Voglia di migliorare e mettersi in gioco",
+                    "Voglia di migliorare e spingersi oltre",
                     "Capacità di stare in gruppo senza creare drama",
-                    "Costanza: se entri, ti alleni",
-                    "Attitudine competitiva, non tossica"
+                    "Costanza: se entri, ti alleni seriamente",
+                    "Attitudine spietata, non tossica"
                 ],
-                headRoles: "Ruoli Definiti",
-                headOffer: "Cosa Offriamo",
+                headRoles: "📜 Ruoli Definiti",
+                headOffer: "🔮 Cosa Offriamo",
                 listOffer: [
-                    "Team organizzato con ruoli chiari",
-                    "Persone con cui grindare e crescere",
-                    "Possibilità di entrare in tornei seri",
-                    "Ambiente serio ma senza stress inutile"
+                    "Team organizzato con ruoli definiti",
+                    "Compagni con cui grindare e dominare",
+                    "Possibilità di entrare in tornei importanti",
+                    "Ambiente serio e privo di perdite di tempo"
                 ],
-                headJoin: "Come Entrare",
-                pJoin: "Prima di entrare faremo una prova per verificare skill e attitudine.",
-                warning: "⚠️ ATTENZIONE: Per fare domanda e diventare membri del team devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!",
-                highlight: "Se pensi di essere al livello, dimostralo."
+                headJoin: "🎃 Come Entrare nel Roster",
+                pJoin: "Prima di entrare farai un provino per verificare skill, sangue freddo e attitudine.",
+                warning: "⚠️ ATTENZIONE: Per fare domanda e diventare membro devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!",
+                highlight: "Se credi di avere il coraggio necessario, dimostralo."
             },
             eng: {
                 btn: "🌐 IT",
-                sub: "Developer",
-                bio: "Developer & Minecraft Server Admin.",
-                wheelSub: "Spin the wheel every 24 hours to win exclusive server rewards!",
-                spinBtn: "SPIN THE WHEEL!",
+                sub: "Developer & Server Admin",
+                bio: "Developer & Minecraft Server Admin. Master of Darkness & Code.",
                 teamBadge: "DuckVanilla Competitive Team",
-                teamIntro: "We are looking for players for our competitive roster on <strong>DuckVanilla</strong>. We are not a basic team: we aren't looking for casual weekly players, but individuals ready to improve, compete, and win.",
-                headDo: "What We Do",
+                teamIntro: "We are looking for warriors for our competitive roster on <strong>DuckVanilla</strong>. We are not a basic team: we aren't looking for casual players, but individuals ready to dominate, compete, and crush opponents.",
+                headDo: "🕷️ What We Do",
                 listDo: [
                     "Tournaments and competitive events",
                     "VOD reviews to analyze mistakes and grow",
-                    "Team strategies and coordination",
-                    "Grinding and preparing together"
+                    "War strategies and coordination",
+                    "Constant grinding and preparation"
                 ],
-                headSeek: "What We Look For",
+                headSeek: "👁️ What We Look For",
                 listSeek: [
-                    "Drive to improve and push your limits",
-                    "Ability to play as a team without creating drama",
-                    "Consistency: if you join, you practice",
-                    "Competitive, non-toxic attitude"
+                    "Drive to improve and push limits",
+                    "Ability to play as a team without drama",
+                    "Consistency: if you join, you train seriously",
+                    "Relentless, non-toxic attitude"
                 ],
-                headRoles: "Defined Roles",
-                headOffer: "What We Offer",
+                headRoles: "📜 Defined Roles",
+                headOffer: "🔮 What We Offer",
                 listOffer: [
                     "Organized team with clear roles",
-                    "Teammates to grind and grow with",
-                    "Opportunity to join serious tournaments",
-                    "Serious environment without useless stress"
+                    "Teammates to grind and dominate with",
+                    "Opportunity to join major tournaments",
+                    "Serious environment with zero time-wasting"
                 ],
-                headJoin: "How to Join",
-                pJoin: "Before joining, we will hold a tryout to test your skills and attitude.",
+                headJoin: "🎃 How to Join the Roster",
+                pJoin: "Before joining, you will undergo a trial to test your skills, composure, and attitude.",
                 warning: "⚠️ WARNING: To apply and join the team, you MUST open a ticket in the TEAM DISCORD (not in the main server Discord)!",
-                highlight: "If you think you've got what it takes, prove it."
+                highlight: "If you think you have what it takes, prove it."
             }
         };
 
@@ -588,11 +576,6 @@
             document.getElementById('lang-btn').innerText = data.btn;
             document.getElementById('prof-sub').innerText = data.sub;
             document.getElementById('prof-bio').innerText = data.bio;
-            document.getElementById('wheel-sub-text').innerText = data.wheelSub;
-            
-            if(!isSpinning && !hasSpunToday()) {
-                document.getElementById('spinBtn').innerText = data.spinBtn;
-            }
 
             document.getElementById('team-badge').innerText = data.teamBadge;
             document.getElementById('team-intro').innerHTML = data.teamIntro;
@@ -624,140 +607,9 @@
             });
         }
 
-        function toggleHalloween() {
-            document.body.classList.toggle('halloween-theme');
-            drawWheel();
+        function toggleSpookyMode() {
+            document.body.classList.toggle('spooky-mode');
         }
-
-        /* LOGICA RUOTA DELLA FORTUNA */
-        const canvas = document.getElementById('wheelCanvas');
-        const ctx = canvas.getContext('2d');
-        const prizes = ["VIP Temp", "+100k Coins", "Kit PvP", "Perdi Tutto", "Key Cassa", "+10k Coins", "Sconto Store", "Riprova!"];
-        const colors = ["#38bdf8", "#c084fc", "#f59e0b", "#ef4444", "#10b981", "#6366f1", "#ec4899", "#8b5cf6"];
-        
-        let startAngle = 0;
-        const arc = Math.PI / (prizes.length / 2);
-        let spinTimeout = null;
-        let spinAngleStart = 10;
-        let spinTime = 0;
-        let spinTimeTotal = 0;
-        let isSpinning = false;
-
-        function drawWheel() {
-            ctx.clearRect(0,0,300,300);
-            for(let i = 0; i < prizes.length; i++) {
-                const angle = startAngle + i * arc;
-                ctx.fillStyle = colors[i % colors.length];
-                ctx.beginPath();
-                ctx.arc(150, 150, 140, angle, angle + arc, false);
-                ctx.arc(150, 150, 0, angle + arc, angle, true);
-                ctx.fill();
-                ctx.strokeStyle = "rgba(0,0,0,0.2)";
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
-                ctx.save();
-                ctx.fillStyle = "#ffffff";
-                ctx.font = 'bold 12px Segoe UI';
-                ctx.translate(150 + Math.cos(angle + arc / 2) * 95, 150 + Math.sin(angle + arc / 2) * 95);
-                ctx.rotate(angle + arc / 2 + Math.PI / 2);
-                const text = prizes[i];
-                ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-                ctx.restore();
-            }
-        }
-
-        function spinWheel() {
-            if (isSpinning || hasSpunToday()) return;
-
-            isSpinning = true;
-            document.getElementById('spinBtn').disabled = true;
-            document.getElementById('wheelResult').innerText = "La ruota sta girando...";
-
-            spinAngleStart = Math.random() * 10 + 10;
-            spinTime = 0;
-            spinTimeTotal = Math.random() * 3000 + 4000;
-            rotateWheel();
-        }
-
-        function rotateWheel() {
-            spinTime += 30;
-            if(spinTime >= spinTimeTotal) {
-                stopRotateWheel();
-                return;
-            }
-            const spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
-            startAngle += (spinAngle * Math.PI / 180);
-            drawWheel();
-            spinTimeout = setTimeout(rotateWheel, 30);
-        }
-
-        function stopRotateWheel() {
-            clearTimeout(spinTimeout);
-            const degrees = startAngle * 180 / Math.PI + 90;
-            const arcd = arc * 180 / Math.PI;
-            const index = Math.floor((360 - degrees % 360) / arcd);
-            const prizeIndex = (index + prizes.length) % prizes.length;
-            
-            const wonPrize = prizes[prizeIndex];
-            document.getElementById('wheelResult').innerText = "🎉 Hai vinto: " + wonPrize + "!";
-            
-            // Salvataggio nel LocalStorage
-            localStorage.setItem('lastSpinTime', Date.now());
-            localStorage.setItem('lastPrize', wonPrize);
-
-            isSpinning = false;
-            checkCooldown();
-        }
-
-        function easeOut(t, b, c, d) {
-            const ts = (t/=d)*t;
-            const tc = ts*t;
-            return b+c*(tc + -3*ts + 3*t);
-        }
-
-        function hasSpunToday() {
-            const lastSpin = localStorage.getItem('lastSpinTime');
-            if (!lastSpin) return false;
-            const hoursPassed = (Date.now() - lastSpin) / (1000 * 60 * 60);
-            return hoursPassed < 24;
-        }
-
-        function checkCooldown() {
-            if (hasSpunToday()) {
-                const btn = document.getElementById('spinBtn');
-                btn.disabled = true;
-                const lastSpin = parseInt(localStorage.getItem('lastSpinTime'));
-                const lastPrize = localStorage.getItem('lastPrize');
-
-                if(lastPrize) {
-                    document.getElementById('wheelResult').innerText = "🏆 Ultimo premio: " + lastPrize;
-                }
-
-                updateTimer(lastSpin);
-                setInterval(() => updateTimer(lastSpin), 1000);
-            }
-        }
-
-        function updateTimer(lastSpin) {
-            const now = Date.now();
-            const diff = (24 * 60 * 60 * 1000) - (now - lastSpin);
-
-            if (diff <= 0) {
-                document.getElementById('spinBtn').disabled = false;
-                document.getElementById('spinBtn').innerText = content[currentLang].spinBtn;
-                document.getElementById('wheelResult').innerText = "";
-            } else {
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('spinBtn').innerText = `Prossimo giro in ${hours}h ${minutes}m ${seconds}s`;
-            }
-        }
-
-        // Inizializzazione Ruota
-        drawWheel();
-        checkCooldown();
     </script>
 
 </body>
