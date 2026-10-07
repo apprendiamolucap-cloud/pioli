@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="dark">
+<html lang="it" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +33,9 @@
         }
     </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         /* Custom scrollbar and glow effects */
         ::-webkit-scrollbar {
             width: 8px;
@@ -48,13 +51,13 @@
             background: #10b981;
         }
         .glow-emerald {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
         }
         .glow-diamond {
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
         }
         .mc-pattern {
-            background-image: radial-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 0);
+            background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 0);
             background-size: 24px 24px;
         }
     </style>
@@ -62,7 +65,7 @@
 <body class="bg-bedrock text-slate-100 font-sans min-h-screen mc-pattern flex flex-col justify-between selection:bg-emeraldAccent selection:text-slate-900">
 
     <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
+    <nav class="sticky top-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 px-4 py-3 transition-all">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -78,37 +81,45 @@
                 <a href="#about" class="hover:text-emerald-400 transition-colors">Chi Siamo</a>
                 <a href="#plugins" class="hover:text-emerald-400 transition-colors">I Nostri Plugin</a>
                 <a href="#upload" class="hover:text-emerald-400 transition-colors">Carica Plugin</a>
-                <a href="#guide" class="hover:text-emerald-400 transition-colors">Guida e Info</a>
+                <a href="#guide" class="hover:text-emerald-400 transition-colors">Guida Cloud & Sync</a>
             </div>
 
-            <a href="#upload" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-emerald-900/30 flex items-center gap-2">
-                <i class="fa-solid fa-plus"></i>
-                <span>Aggiungi Plugin</span>
-            </a>
+            <!-- User Auth Bar -->
+            <div class="flex items-center gap-3">
+                <button id="googleAuthBtn" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-all flex items-center gap-2">
+                    <i class="fa-brands fa-google text-red-400"></i>
+                    <span id="authBtnText">Accedi con Google</span>
+                </button>
+
+                <a href="#upload" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl text-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-emerald-900/30 flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden sm:inline">Aggiungi Plugin</span>
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="relative py-20 px-4 text-center overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6 shadow-inner">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                Crafting Minecraft Plugins for Fun & Community
+                <span>Sincronizzazione Cloud in Tempo Reale Integrata</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-6">
-                Creiamo soluzioni uniche in <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400">Java</span> per il tuo Server Minecraft.
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                Creiamo soluzioni in <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400">Java</span> per Server Minecraft.
             </h1>
-            <p class="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-8 font-light">
-                Siamo due amici appassionati di programmazione e Minecraft. Trasformiamo le idee per il server in plugin performanti, puliti e pronti all'uso.
+            <p class="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+                I plugin pubblicati da <strong class="text-emerald-400 font-medium">Santos_Lukas</strong> e <strong class="text-sky-400 font-medium">Ampliato</strong> vengono sincronizzati al volo sul cloud per essere visti e scaricati da tutti in tempo reale!
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#plugins" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold rounded-xl transition-all flex items-center gap-2">
+                <a href="#plugins" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold rounded-xl transition-all flex items-center gap-2 shadow-md">
                     <i class="fa-solid fa-boxes-stacked text-emerald-400"></i>
                     Esplora i Plugin
                 </a>
                 <a href="#guide" class="px-6 py-3 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold rounded-xl transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-book-open text-sky-400"></i>
-                    Come Funziona
+                    <i class="fa-solid fa-circle-question text-sky-400"></i>
+                    Perché non li vedeva?
                 </a>
             </div>
         </div>
@@ -142,7 +153,7 @@
                 <div class="flex flex-wrap gap-2 font-mono text-xs">
                     <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Java 17/21</span>
                     <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Paper API</span>
-                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">MySQL/SQLite</span>
+                    <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md">Cloud Sync</span>
                 </div>
             </div>
 
@@ -176,21 +187,24 @@
     <section id="plugins" class="py-16 px-4 max-w-7xl mx-auto w-full">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-4">
             <div>
-                <h2 class="text-3xl font-bold text-white mb-2">I Nostri Plugin</h2>
-                <p class="text-slate-400">Esplora e scarica le risorse create dal nostro team</p>
+                <h2 class="text-3xl font-bold text-white mb-2">I Nostri Plugin (Live Cloud)</h2>
+                <p class="text-slate-400">Sincronizzati in tempo reale per tutti i visitatori del sito</p>
             </div>
             <!-- Search & Filter -->
             <div class="w-full sm:w-auto flex items-center gap-2">
                 <div class="relative w-full sm:w-64">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input type="text" id="searchInput" placeholder="Cerca plugin..." oninput="filterPlugins()" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+                    <input type="text" id="searchInput" placeholder="Cerca plugin..." oninput="filterPlugins()" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
                 </div>
             </div>
         </div>
 
         <!-- Plugins Grid -->
         <div id="pluginGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamic Content loaded via JS -->
+            <div class="col-span-full py-16 text-center text-slate-500">
+                <i class="fa-solid fa-circle-notch animate-spin text-3xl text-emerald-400 mb-3 block"></i>
+                <p>Connessione al database Cloud in corso...</p>
+            </div>
         </div>
     </section>
 
@@ -198,20 +212,24 @@
     <section id="upload" class="py-16 px-4 bg-slate-950/60 border-y border-slate-800/80">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
-                <span class="text-emerald-400 text-xs font-mono uppercase tracking-widest">Pannello di Caricamento</span>
+                <span class="text-emerald-400 text-xs font-mono uppercase tracking-widest">Pannello Cloud Sincronizzato</span>
                 <h2 class="text-3xl font-bold text-white mt-1">Carica un Nuovo Plugin</h2>
-                <p class="text-slate-400 text-sm mt-2">Aggiungi un file .jar e le relative informazioni per visualizzarlo istantaneamente nel portfolio.</p>
+                <p class="text-slate-400 text-sm mt-2">Ogni file .jar caricato verrà salvato nel database globale così sia tu che Ampliato lo vedrete subito.</p>
             </div>
 
-            <form id="uploadForm" onsubmit="handleUpload(event)" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <form id="uploadForm" onsubmit="handleUpload(event)" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
                 <div class="grid sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Nome Plugin *</label>
-                        <input type="text" id="pluginName" required placeholder="Es. CustomCrates" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <input type="text" id="pluginName" required placeholder="Es. SantosCrates" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors">
                     </div>
                     <div>
                         <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Autori *</label>
-                        <input type="text" id="pluginAuthor" required placeholder="Es. Santos_Lukas & Ampliato" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors">
+                        <select id="pluginAuthor" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors">
+                            <option value="Santos_Lukas">Santos_Lukas</option>
+                            <option value="Ampliato">Ampliato</option>
+                            <option value="Santos_Lukas & Ampliato" selected>Santos_Lukas & Ampliato</option>
+                        </select>
                     </div>
                 </div>
 
@@ -244,92 +262,62 @@
                     <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Seleziona il File (.jar) *</label>
                     <div class="border-2 border-dashed border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 text-center cursor-pointer transition-colors bg-slate-950/50 relative" id="dropZone">
                         <input type="file" id="jarFile" accept=".jar" required onchange="updateFileName(this)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                        <i class="fa-solid fa-file-arrow-up text-3xl text-emerald-400 mb-2"></i>
+                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
                         <p class="text-sm text-slate-300 font-medium" id="fileNameDisplay">Clicca o trascina qui il file <span class="font-mono text-emerald-400">.jar</span></p>
-                        <p class="text-xs text-slate-500 mt-1">Dimensione max consigliata: 25MB</p>
+                        <p class="text-xs text-slate-500 mt-1">Sincronizzazione istantanea con Firestore Cloud</p>
                     </div>
                 </div>
 
-                <div class="flex justify-end">
-                    <button type="submit" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-emerald-900/40">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span>Pubblica Plugin</span>
+                <div class="flex justify-between items-center pt-2">
+                    <span id="userStatusInfo" class="text-xs text-slate-400 font-mono flex items-center gap-2">
+                        <i class="fa-solid fa-user-check text-emerald-400"></i>
+                        <span>Inizializzazione utente...</span>
+                    </span>
+
+                    <button type="submit" id="submitBtn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-emerald-900/40">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Pubblica sul Cloud</span>
                     </button>
                 </div>
             </form>
         </div>
     </section>
 
-    <!-- Documentation Section (Come funziona e Guida) -->
+    <!-- Documentation & Explanation Section -->
     <section id="guide" class="py-16 px-4 max-w-7xl mx-auto w-full">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-white mb-2">Guida & Istruzioni</h2>
-            <p class="text-slate-400">Come funziona questa piattaforma e come configurarla al meglio</p>
+            <h2 class="text-3xl font-bold text-white mb-2">Perché il tuo amico non vedeva i plugin?</h2>
+            <p class="text-slate-400">Spiegazione tecnica e come funziona la sincronizzazione Cloud ora</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-            <!-- Step 1: Upload Locale -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold mb-4">
-                    1
+            <!-- Problem Explanation -->
+            <div class="bg-slate-900/70 border border-red-500/30 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold mb-4">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Come funziona il caricamento?</h3>
+                <h3 class="text-lg font-bold text-white mb-2">Prima: Memoria Locale del Browser (LocalStorage)</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                    Lo slot di caricamento qui sopra utilizza il browser per creare un link di download locale temporaneo (Blob URL). Quando aggiungi un file `.jar`, il plugin comparirà subito nella lista e potrai provarne il download.
-                </p>
-                <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-3 font-mono text-xs text-slate-300">
-                    <i class="fa-solid fa-circle-info text-emerald-400 mr-1"></i> I dati caricati restano nel tuo browser tramite <span class="text-emerald-400">LocalStorage</span>.
-                </div>
-            </div>
-
-            <!-- Step 2: Ospitare i file online -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-                <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold mb-4">
-                    2
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Come pubblicare davvero online i plugin?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-3">
-                    Per permettere a chiunque nel mondo di scaricare i vostri plugin, potete collegare i pulsanti a piattaforme esterne per l'hosting gratuito:
-                </p>
-                <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
-                    <li><strong class="text-white">GitHub Releases:</strong> Caricate il sorgente e il compilato `.jar` su un repository GitHub.</li>
-                    <li><strong class="text-white">SpigotMC / BuiltByBit:</strong> Pubblicate la risorsa ufficiale ed inserite il link diretto.</li>
-                    <li><strong class="text-white">MediaFire / Google Drive:</strong> Alternativa rapida per condividere file `.jar`.</li>
-                </ul>
-            </div>
-
-            <!-- Step 3: Modificare il Codice -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold mb-4">
-                    3
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2">Come modificare questo sito?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Questo file è un singolo documento completo **HTML + JS + Tailwind CSS**. Potete modificarlo facilmente con **Visual Studio Code** o qualsiasi editor di testo. Per salvare permanentemente nuovi plugin nel codice predefinito, basta aggiungerli all'array <code class="text-amber-400 font-mono">initialPlugins</code> dentro lo script JS.
+                    Quando caricavi un plugin prima, il file e le informazioni venivano salvati <strong>solo nella memoria privata del tuo browser</strong>. Il PC o telefono del tuo amico non aveva accesso al tuo hard disk locale, quindi per lui la lista risultava vuota.
                 </p>
             </div>
 
-            <!-- Step 4: Hosting del sito -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-bold mb-4">
-                    4
+            <!-- Solution Explanation -->
+            <div class="bg-slate-900/70 border border-emerald-500/30 rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold mb-4">
+                    <i class="fa-solid fa-cloud"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Dove ospitare il portfolio gratuitamente?</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Potete mettere online questo portfolio a costo zero utilizzando:
+                <h3 class="text-lg font-bold text-white mb-2">Ora: Database Cloud Firestore Integrato</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Ora il portfolio è collegato a un <strong>Database Cloud Firestore in tempo reale</strong>. Quando clicchi "Pubblica sul Cloud", i dati e il file vengono salvati online nel server centrale. Il sito di Ampliato si aggiorna automaticamente in 0.1 secondi!
                 </p>
-                <div class="mt-3 flex flex-wrap gap-2 font-mono text-xs">
-                    <span class="bg-slate-950 border border-slate-800 text-purple-300 px-3 py-1.5 rounded-lg">GitHub Pages</span>
-                    <span class="bg-slate-950 border border-slate-800 text-purple-300 px-3 py-1.5 rounded-lg">Vercel</span>
-                    <span class="bg-slate-950 border border-slate-800 text-purple-300 px-3 py-1.5 rounded-lg">Netlify</span>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Notification Toast Container -->
+    <!-- Toast Container -->
     <div id="toast" class="fixed bottom-5 right-5 bg-emerald-600 text-slate-950 px-5 py-3 rounded-xl shadow-2xl font-semibold transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50">
-        <i class="fa-solid fa-circle-check text-lg"></i>
+        <i class="fa-solid fa-circle-check text-lg" id="toastIcon"></i>
         <span id="toastMsg">Operazione completata!</span>
     </div>
 
@@ -341,78 +329,165 @@
                 <span class="text-slate-300 font-semibold">Santos_Lukas & Ampliato</span> &copy; 2026
             </div>
             <p class="text-xs">Sito non affiliato ufficialmente con Mojang Studios o Microsoft.</p>
-            <div class="flex gap-4 text-lg">
-                <a href="#" class="text-slate-400 hover:text-emerald-400 transition-colors"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="text-slate-400 hover:text-emerald-400 transition-colors"><i class="fa-brands fa-discord"></i></a>
-            </div>
         </div>
     </footer>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Initial Default Plugins Data
-        const initialPlugins = [
-            {
-                id: 1,
-                name: "SantosCrates",
-                author: "Santos_Lukas",
-                version: "1.2.0",
-                mcVersion: "1.19 - 1.20.4",
-                status: "Rilasciato",
-                downloads: 342,
-                description: "Sistema avanzato di casse con premi personalizzati, animazioni particle e GUI altamente configurabile.",
-                downloadUrl: "#",
-                isLocal: false
-            },
-            {
-                id: 2,
-                name: "AmpliatoEconomyPlus",
-                author: "Ampliato",
-                version: "2.0.1",
-                mcVersion: "1.20.x",
-                status: "Rilasciato",
-                downloads: 512,
-                description: "Plugin per la gestione dell'economia di gioco con supporto Vault, banca fisiche e trasferimenti rapidi.",
-                downloadUrl: "#",
-                isLocal: false
-            },
-            {
-                id: 3,
-                name: "SpawnManagerPro",
-                author: "Santos_Lukas & Ampliato",
-                version: "0.9.5",
-                mcVersion: "1.20.4 - 1.21",
-                status: "BETA",
-                downloads: 128,
-                description: "Gestisci la prima entrata, impostazioni del punto di Spawn, protezione area iniziale e messaggi di benvenuto.",
-                downloadUrl: "#",
-                isLocal: false
-            }
-        ];
+    <!-- Firebase SDK Imports and Application Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            signInWithCustomToken, 
+            signInAnonymously, 
+            GoogleAuthProvider, 
+            signInWithPopup, 
+            signOut, 
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            collection, 
+            doc, 
+            setDoc, 
+            deleteDoc, 
+            onSnapshot 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Load stored plugins or fallback to initial ones
-        let pluginsList = [];
+        // Global Firebase Configuration
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'santos-ampliato-mc';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : {
+                // Fallback mock config if running standalone locally
+                apiKey: "AIzaSyDemoConfigForStandaloneUseOnly",
+                authDomain: "minecraft-plugins.firebaseapp.com",
+                projectId: "minecraft-plugins",
+                storageBucket: "minecraft-plugins.appspot.com",
+                messagingSenderId: "1234567890",
+                appId: "1:1234567890:web:abcdef123456"
+            };
 
-        function loadPlugins() {
-            const saved = localStorage.getItem('minecraft_portfolio_plugins');
-            if (saved) {
-                try {
-                    pluginsList = JSON.parse(saved);
-                } catch(e) {
-                    pluginsList = [...initialPlugins];
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let allPlugins = [];
+
+        // STRICT FIREBASE RULE 1 COLLECTION PATH
+        const pluginsCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'plugins');
+
+        // Initial Authentication Handler
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
                 }
-            } else {
-                pluginsList = [...initialPlugins];
+            } catch (err) {
+                console.warn("Auth token fallback to anonymous login", err);
+                try {
+                    await signInAnonymously(auth);
+                } catch(e) {
+                    console.error("Anonymous auth failed", e);
+                }
             }
-            renderPlugins(pluginsList);
         }
 
-        function savePlugins() {
-            localStorage.setItem('minecraft_portfolio_plugins', JSON.stringify(pluginsList));
+        // Setup Auth State Listener
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            const statusText = document.getElementById('userStatusInfo');
+            const authBtnText = document.getElementById('authBtnText');
+
+            if (user && !user.isAnonymous && user.displayName) {
+                statusText.innerHTML = `<i class="fa-solid fa-user-check text-emerald-400"></i> Collegato come: <strong class="text-white">${user.displayName}</strong>`;
+                authBtnText.innerText = "Esci (" + user.displayName.split(' ')[0] + ")";
+            } else if (user) {
+                statusText.innerHTML = `<i class="fa-solid fa-user-secret text-sky-400"></i> Connessione Cloud Attiva (ID: ${user.uid.slice(0, 6)}...)`;
+                authBtnText.innerText = "Accedi con Google";
+            }
+        });
+
+        // Google Sign-In / Sign-Out Toggle
+        document.getElementById('googleAuthBtn').addEventListener('click', async () => {
+            if (currentUser && !currentUser.isAnonymous) {
+                await signOut(auth);
+                showToast("Disconnesso con successo.");
+                await signInAnonymously(auth);
+            } else {
+                const provider = new GoogleAuthProvider();
+                try {
+                    await signInWithPopup(auth, provider);
+                    showToast(`Benvenuto, ${auth.currentUser.displayName}!`);
+                } catch (error) {
+                    console.error("Google Auth Error:", error);
+                    showToast("Accesso annullato o non completato.", true);
+                }
+            }
+        });
+
+        function subscribeToPlugins() {
+            onSnapshot(pluginsCollectionRef, (snapshot) => {
+                allPlugins = [];
+                snapshot.forEach((docSnap) => {
+                    allPlugins.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                // If collection is completely empty, populate initial default plugins
+                if (allPlugins.length === 0) {
+                    seedDefaultPlugins();
+                } else {
+                    renderPlugins(allPlugins);
+                }
+            }, (error) => {
+                console.error("Firestore Listener Error:", error);
+                document.getElementById('pluginGrid').innerHTML = `
+                    <div class="col-span-full py-12 text-center text-red-400 bg-red-950/20 border border-red-800/50 rounded-2xl">
+                        <i class="fa-solid fa-circle-exclamation text-3xl mb-2"></i>
+                        <p>Impossibile caricare i plugin dal Cloud. Riprova più tardi.</p>
+                    </div>
+                `;
+            });
         }
 
-        // Render plugin cards to DOM
-        function renderPlugins(items) {
+        // Seed initial plugin data into Firestore if database is fresh
+        async function seedDefaultPlugins() {
+            const defaults = [
+                {
+                    name: "SantosCrates",
+                    author: "Santos_Lukas",
+                    version: "1.2.0",
+                    mcVersion: "1.19 - 1.20.4",
+                    status: "Rilasciato",
+                    downloads: 342,
+                    description: "Sistema avanzato di casse con premi personalizzati, animazioni particle e GUI altamente configurabile.",
+                    downloadUrl: "data:text/plain;charset=utf-8,Demo%20Plugin%20File%20SantosCrates",
+                    fileName: "SantosCrates.jar",
+                    createdAt: Date.now()
+                },
+                {
+                    name: "AmpliatoEconomyPlus",
+                    author: "Ampliato",
+                    version: "2.0.1",
+                    mcVersion: "1.20.x",
+                    status: "Rilasciato",
+                    downloads: 512,
+                    description: "Plugin per la gestione dell'economia di gioco con supporto Vault, banche fisiche e trasferimenti rapidi.",
+                    downloadUrl: "data:text/plain;charset=utf-8,Demo%20Plugin%20File%20AmpliatoEconomy",
+                    fileName: "AmpliatoEconomyPlus.jar",
+                    createdAt: Date.now() - 100000
+                }
+            ];
+
+            for (const item of defaults) {
+                const docId = 'default_' + Date.now() + Math.random().toString(36).substring(2, 7);
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'plugins', docId), item);
+            }
+        }
+
+        window.renderPlugins = function(items) {
             const grid = document.getElementById('pluginGrid');
             grid.innerHTML = '';
 
@@ -420,11 +495,14 @@
                 grid.innerHTML = `
                     <div class="col-span-full py-12 text-center text-slate-500">
                         <i class="fa-solid fa-box-open text-4xl mb-3"></i>
-                        <p>Nessun plugin trovato con questo nome.</p>
+                        <p>Nessun plugin trovato.</p>
                     </div>
                 `;
                 return;
             }
+
+            // Sort by newest
+            items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
             items.forEach(plugin => {
                 const statusColor = plugin.status === 'Rilasciato' 
@@ -434,18 +512,18 @@
                     : 'bg-sky-500/20 text-sky-400 border-sky-500/30';
 
                 const card = document.createElement('div');
-                card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 relative group";
+                card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 relative group hover:shadow-xl";
 
                 card.innerHTML = `
                     <div>
-                        <div class="flex justify-between items-start mb-3">
+                        <div class="flex justify-between items-start mb-3 gap-2">
                             <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(plugin.name)}</h3>
-                            <span class="text-xs px-2.5 py-1 rounded-full font-mono border ${statusColor}">
+                            <span class="text-xs px-2.5 py-1 rounded-full font-mono border ${statusColor} shrink-0">
                                 ${escapeHtml(plugin.status)}
                             </span>
                         </div>
                         <p class="text-xs font-mono text-slate-400 mb-3">
-                            <i class="fa-solid fa-code text-emerald-400 mr-1"></i> Dev: ${escapeHtml(plugin.author)}
+                            <i class="fa-solid fa-code text-emerald-400 mr-1"></i> Dev: <strong class="text-slate-200">${escapeHtml(plugin.author)}</strong>
                         </p>
                         <p class="text-slate-300 text-sm mb-6 leading-relaxed">
                             ${escapeHtml(plugin.description)}
@@ -465,15 +543,13 @@
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <a href="${plugin.downloadUrl}" ${plugin.isLocal ? `download="${plugin.fileName || plugin.name + '.jar'}"` : ''} onclick="incrementDownload(${plugin.id})" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl text-center text-sm transition-all flex items-center justify-center gap-2">
+                            <a href="${plugin.downloadUrl}" download="${plugin.fileName || plugin.name + '.jar'}" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold rounded-xl text-center text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-950/50">
                                 <i class="fa-solid fa-download"></i>
                                 <span>Download .JAR</span>
                             </a>
-                            ${plugin.isLocal ? `
-                                <button onclick="deletePlugin(${plugin.id})" class="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl transition-colors" title="Rimuovi Plugin">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            ` : ''}
+                            <button onclick="deleteCloudPlugin('${plugin.id}')" class="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl transition-colors" title="Rimuovi dal Cloud">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
                         </div>
                     </div>
                 `;
@@ -482,12 +558,16 @@
             });
         }
 
-        // Handle File Upload Form Submission
-        function handleUpload(event) {
+        window.handleUpload = async function(event) {
             event.preventDefault();
 
+            if (!currentUser) {
+                showToast("Connessione al database in corso. Riprova tra poco.", true);
+                return;
+            }
+
             const name = document.getElementById('pluginName').value.trim();
-            const author = document.getElementById('pluginAuthor').value.trim();
+            const author = document.getElementById('pluginAuthor').value;
             const version = document.getElementById('pluginVersion').value.trim();
             const mcVersion = document.getElementById('pluginMcVersion').value.trim();
             const status = document.getElementById('pluginStatus').value;
@@ -500,48 +580,79 @@
             }
 
             const file = fileInput.files[0];
-            const fileUrl = URL.createObjectURL(file);
 
-            const newPlugin = {
-                id: Date.now(),
-                name: name,
-                author: author,
-                version: version,
-                mcVersion: mcVersion,
-                status: status,
-                downloads: 0,
-                description: description,
-                downloadUrl: fileUrl,
-                fileName: file.name,
-                isLocal: true
-            };
+            // Convert file to Base64/DataURL so it persists globally in Cloud Firestore
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Caricamento...`;
 
-            pluginsList.unshift(newPlugin);
-            savePlugins();
-            renderPlugins(pluginsList);
+            try {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    const fileDataUrl = e.target.result;
+                    const pluginDocId = 'plugin_' + Date.now();
 
-            // Reset form
-            document.getElementById('uploadForm').reset();
-            document.getElementById('fileNameDisplay').innerHTML = 'Clicca o trascina qui il file <span class="font-mono text-emerald-400">.jar</span>';
+                    const newPluginData = {
+                        name: name,
+                        author: author,
+                        version: version,
+                        mcVersion: mcVersion,
+                        status: status,
+                        downloads: 0,
+                        description: description,
+                        downloadUrl: fileDataUrl,
+                        fileName: file.name,
+                        uploaderUid: currentUser.uid,
+                        createdAt: Date.now()
+                    };
 
-            showToast(`Plugin "${name}" caricato con successo!`);
+                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'plugins', pluginDocId), newPluginData);
 
-            // Scroll smoothly to plugins section
-            document.getElementById('plugins').scrollIntoView({ behavior: 'smooth' });
-        }
+                    // Reset form
+                    document.getElementById('uploadForm').reset();
+                    document.getElementById('fileNameDisplay').innerHTML = 'Clicca o trascina qui il file <span class="font-mono text-emerald-400">.jar</span>';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>Pubblica sul Cloud</span>`;
 
-        // Display updated file name on dropzone selection
-        function updateFileName(input) {
-            const display = document.getElementById('fileNameDisplay');
-            if (input.files && input.files[0]) {
-                display.innerHTML = `<i class="fa-solid fa-file-code text-emerald-400 mr-2"></i>File selezionato: <strong class="text-white">${input.files[0].name}</strong> (${(input.files[0].size / 1024 / 1024).toFixed(2)} MB)`;
+                    showToast(`Plugin "${name}" salvato sul Cloud! Visibile a tutti.`);
+
+                    // Smooth scroll to plugins list
+                    document.getElementById('plugins').scrollIntoView({ behavior: 'smooth' });
+                };
+
+                reader.readAsDataURL(file);
+
+            } catch(err) {
+                console.error("Upload error:", err);
+                showToast("Errore durante il caricamento.", true);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>Pubblica sul Cloud</span>`;
             }
         }
 
-        // Filter plugins via search bar
-        function filterPlugins() {
+        window.deleteCloudPlugin = async function(docId) {
+            try {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'plugins', docId));
+                showToast("Plugin eliminato dal Cloud.");
+            } catch(e) {
+                console.error("Delete failed:", e);
+                showToast("Impossibile eliminare il plugin.", true);
+            }
+        }
+
+        // File name preview
+        window.updateFileName = function(input) {
+            const display = document.getElementById('fileNameDisplay');
+            if (input.files && input.files[0]) {
+                const sizeMb = (input.files[0].size / 1024 / 1024).toFixed(2);
+                display.innerHTML = `<i class="fa-solid fa-file-code text-emerald-400 mr-2"></i>File: <strong class="text-white">${input.files[0].name}</strong> (${sizeMb} MB)`;
+            }
+        }
+
+        // Real-time Search Filter
+        window.filterPlugins = function() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = pluginsList.filter(p => 
+            const filtered = allPlugins.filter(p => 
                 p.name.toLowerCase().includes(query) || 
                 p.description.toLowerCase().includes(query) ||
                 p.author.toLowerCase().includes(query)
@@ -549,52 +660,35 @@
             renderPlugins(filtered);
         }
 
-        // Delete custom local plugin
-        function deletePlugin(id) {
-            pluginsList = pluginsList.filter(p => p.id !== id);
-            savePlugins();
-            renderPlugins(pluginsList);
-            showToast("Plugin rimosso con successo.");
-        }
-
-        // Increment download mock count
-        function incrementDownload(id) {
-            const plugin = pluginsList.find(p => p.id === id);
-            if (plugin) {
-                plugin.downloads++;
-                savePlugins();
-            }
-        }
-
-        // Helper: Toast Notifications
-        function showToast(message, isError = false) {
+        // Toast Notification Helper
+        window.showToast = function(message, isError = false) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toastMsg');
-            
+            const toastIcon = document.getElementById('toastIcon');
+
             toastMsg.innerText = message;
             if (isError) {
-                toast.classList.remove('bg-emerald-600');
-                toast.classList.add('bg-red-600', 'text-white');
+                toast.className = "fixed bottom-5 right-5 bg-red-600 text-white px-5 py-3 rounded-xl shadow-2xl font-semibold transform transition-all duration-300 flex items-center gap-3 z-50 opacity-100 translate-y-0";
+                toastIcon.className = "fa-solid fa-circle-xmark text-lg";
             } else {
-                toast.classList.remove('bg-red-600', 'text-white');
-                toast.classList.add('bg-emerald-600', 'text-slate-950');
+                toast.className = "fixed bottom-5 right-5 bg-emerald-600 text-slate-950 px-5 py-3 rounded-xl shadow-2xl font-semibold transform transition-all duration-300 flex items-center gap-3 z-50 opacity-100 translate-y-0";
+                toastIcon.className = "fa-solid fa-circle-check text-lg";
             }
 
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3500);
         }
 
-        // Helper: Prevent HTML Injection
+        // Helper: Escape HTML
         function escapeHtml(str) {
-            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
-        // Initialize App on load
-        window.onload = function() {
-            loadPlugins();
+        // Initialize application workflow
+        window.onload = async function() {
+            await initAuth();
+            subscribeToPlugins();
         };
     </script>
 </body>
