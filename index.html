@@ -225,7 +225,6 @@
             box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
         }
 
-        /* TEAM DISAGIATI STYLES */
         .team-title {
             text-align: center;
             font-family: 'Pirata One', cursive, sans-serif;
@@ -307,7 +306,6 @@
             top: 2px;
         }
 
-        /* RUOLI PIÙ GRANDI E CLICCABILI */
         .roles {
             display: flex;
             flex-wrap: wrap;
@@ -414,7 +412,6 @@
             text-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
         }
 
-        /* MODALE SCREAMER PER I RUOLI */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -569,7 +566,7 @@
                 </div>
 
                 <div class="grid-box">
-                    <h3 id="head-seek">👁️️ Cosa Cerchiamo</h3>
+                    <h3 id="head-seek">👁️ Cosa Cerchiamo</h3>
                     <ul id="list-seek">
                         <li>Voglia di migliorare e spingersi oltre</li>
                         <li>Capacità di stare in gruppo senza creare drama</li>
@@ -630,7 +627,7 @@
             <img src="https://images.weserv.nl/?url=https://i.pinimg.com/736x/00/8f/4c/008f4cd5a8ff9835a284d952eb00b024.jpg" alt="Scream Icon" class="scream-img">
             <h3 class="modal-title" id="modalRoleTitle">TITOLO RUOLO</h3>
             <p class="modal-desc" id="modalRoleDesc">Descrizione del ruolo...</p>
-            <button class="close-btn" onclick="closeRoleModal()">Chiudi 🩸</button>
+            <button class="close-btn" id="close-modal-btn" onclick="closeRoleModal()">Chiudi 🩸</button>
         </div>
     </div>
 
@@ -704,7 +701,7 @@
                     "Tornei ed eventi competitivi",
                     "VOD review per analizzare errori e crescere",
                     "Strategie di guerra e coordinazione",
-                    "Grind e preparazione costante"
+                    "Grind e preparazione constante"
                 ],
                 headSeek: "👁️ Cosa Cerchiamo",
                 listSeek: [
@@ -724,7 +721,8 @@
                 headJoin: "🎃 Come Entrare nel Roster",
                 pJoin: "Prima di entrare farai un provino per verificare skill, sangue freddo e attitudine.",
                 warning: "⚠️ ATTENZIONE: Per fare domanda e diventare membro devi aprire un ticket nel DISCORD DEL TEAM (non nel Discord del server)!",
-                highlight: "Se credi di avere il coraggio necessario, dimostralo."
+                highlight: "Se credi di avere il coraggio necessario, dimostralo.",
+                closeBtn: "Chiudi 🩸"
             },
             eng: {
                 btn: "🌐 IT",
@@ -757,9 +755,15 @@
                 headJoin: "🎃 How to Join the Roster",
                 pJoin: "Before joining, you will undergo a trial to test your skills, composure, and attitude.",
                 warning: "⚠️ WARNING: To apply and join the team, you MUST open a ticket in the TEAM DISCORD (not in the main server Discord)!",
-                highlight: "If you think you have what it takes, prove it."
+                highlight: "If you think you have what it takes, prove it.",
+                closeBtn: "Close 🩸"
             }
         };
+
+        function renderList(elementId, items) {
+            const ul = document.getElementById(elementId);
+            ul.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ita' ? 'eng' : 'ita';
@@ -771,44 +775,34 @@
 
             document.getElementById('team-badge').innerText = data.teamBadge;
             document.getElementById('team-intro').innerHTML = data.teamIntro;
-            
+
             document.getElementById('head-do').innerText = data.headDo;
-            updateList('list-do', data.listDo);
+            renderList('list-do', data.listDo);
 
             document.getElementById('head-seek').innerText = data.headSeek;
-            updateList('list-seek', data.listSeek);
+            renderList('list-seek', data.listSeek);
 
             document.getElementById('head-roles').innerText = data.headRoles;
 
             document.getElementById('head-offer').innerText = data.headOffer;
-            updateList('list-offer', data.listOffer);
+            renderList('list-offer', data.listOffer);
 
             document.getElementById('head-join').innerText = data.headJoin;
             document.getElementById('p-join').innerText = data.pJoin;
             document.getElementById('warning-text').innerText = data.warning;
             document.getElementById('cta-highlight').innerText = data.highlight;
-        }
-
-        function updateList(elementId, items) {
-            const ul = document.getElementById(elementId);
-            ul.innerHTML = '';
-            items.forEach(item => {
-                const li = document.createElement('li');
-                li.innerText = item;
-                ul.appendChild(li);
-            });
+            document.getElementById('close-modal-btn').innerText = data.closeBtn;
         }
 
         function toggleSpookyMode() {
             document.body.classList.toggle('spooky-mode');
         }
 
-        /* FUNZIONI PER APRIRE E CHIUDERE LA MODALE RUOLO */
         function openRoleModal(roleKey) {
-            const roleData = roleDetails[currentLang][roleKey];
-            if(roleData) {
-                document.getElementById('modalRoleTitle').innerText = roleData.title;
-                document.getElementById('modalRoleDesc').innerText = roleData.desc;
+            const details = roleDetails[currentLang][roleKey];
+            if (details) {
+                document.getElementById('modalRoleTitle').innerText = details.title;
+                document.getElementById('modalRoleDesc').innerText = details.desc;
                 document.getElementById('roleModal').classList.add('active');
             }
         }
@@ -816,14 +810,6 @@
         function closeRoleModal() {
             document.getElementById('roleModal').classList.remove('active');
         }
-
-        // Chiudi modale cliccando fuori dal riquadro
-        document.getElementById('roleModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeRoleModal();
-            }
-        });
     </script>
-
 </body>
 </html>
